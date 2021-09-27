@@ -1,0 +1,50 @@
+<div class="head">
+  <span class="title">Редактирование счета</span>
+  <button class="cursor" mat-dialog-close mat-icon-button>
+    <img src="./assets/ic_clear_black_24px.svg"/>
+  </button>
+</div>
+
+<form #form="ngForm">
+  <mat-dialog-content>
+    <div class="content">
+      <div class="fields">
+        <mat-form-field class="field">
+          <input [(ngModel)]="invoice.price" [min]="0" matInput name="price"
+                 placeholder="Сумма счета" required type="number"/>
+          <mat-error>Введите значение больше 0</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-select [(ngModel)]="invoice.status" placeholder="Статус счета">
+            <mat-option *ngFor="let status of statuses"
+                        [value]="status">{{ statuses[status - 1] | invoiceStatusPipe}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="field">
+          <mat-select [(ngModel)]="invoice.paymentMethod" placeholder="Способ оплаты">
+            <mat-option *ngFor="let payment of payments"
+                        [value]="payment">{{ statuses[payment - 1] | invoicePaymentPipe }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+    </div>
+  </mat-dialog-content>
+</form>
+
+<mat-dialog-actions>
+  <button (click)="clear()" [disabled]="pendingRequest" color="warn" mat-button>
+    СБРОСИТЬ
+  </button>
+  <button (click)="edit()" [disabled]="submitDisabled" color="primary" mat-button>
+    СОХРАНИТЬ
+  </button>
+</mat-dialog-actions>
+
+<div *ngIf="pendingRequest" class="wrapper">
+  <mat-spinner *ngIf="pendingRequest"></mat-spinner>
+</div>

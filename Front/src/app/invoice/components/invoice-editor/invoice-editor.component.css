@@ -1,0 +1,81 @@
+:host {
+  max-height: 80vh;
+  max-width: 60vw;
+  display: flex;
+  flex-direction: column;
+  min-width: 425px;
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+mat-error {
+  max-width: fit-content;
+}
+
+mat-form-field {
+  margin: 0 .5rem;
+}
+
+div.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3%;
+  margin-top: 5%;
+  flex: 1;
+}
+
+.head {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.title {
+  flex: 1;
+  font-size: 20px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .87);
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.cursor:hover {
+  opacity: 0.75;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fields {
+  display: flex;
+  flex-flow: column;
+}
+
+.field {
+  flex: 3;
+}
+
+.wrapper {
+  position: absolute;
+  background: rgba(0, 0, 0, .1);
+  transition: opacity .4s cubic-bezier(.25, .8, .25, 1);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+mat-spinner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+}

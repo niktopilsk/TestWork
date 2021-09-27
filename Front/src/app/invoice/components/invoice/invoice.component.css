@@ -1,0 +1,52 @@
+mat-table {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  height: 35px
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.id {
+  flex: 1
+}
+
+.time {
+  flex: 3
+}
+
+.status {
+  flex: 2
+}
+
+.price {
+  flex: 2
+}
+
+.payment {
+  flex: 3
+}
+
+.buttons {
+  flex: 2
+}

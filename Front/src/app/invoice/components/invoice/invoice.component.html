@@ -1,0 +1,55 @@
+<div class="header">
+  <h1>Мониторинг и управление электронными счетами</h1>
+  <button (click)="addInvoice()" mat-raised-button>Добавить новый счет</button>
+</div>
+<div class="container">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="id">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="id" mat-sort-header>Номер</mat-header-cell>
+      <mat-cell *matCellDef="let invoice" class="id">
+        {{invoice.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastEditionTime">
+      <mat-header-cell *matHeaderCellDef class="time" mat-sort-header>Время последнего изменения</mat-header-cell>
+      <mat-cell *matCellDef="let invoice" class="time">
+        {{invoice.lastEditionTime | date:'dd.MM.yyyy HH:mm:ss'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef class="status" mat-sort-header>Статус</mat-header-cell>
+      <mat-cell *matCellDef="let invoice" class="status">
+        {{invoice.status | invoiceStatusPipe}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef class="price" mat-sort-header>Сумма</mat-header-cell>
+      <mat-cell *matCellDef="let invoice" class="price">
+        {{invoice.price}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="paymentMethod">
+      <mat-header-cell *matHeaderCellDef class="payment" mat-sort-header>Способ оплаты</mat-header-cell>
+      <mat-cell *matCellDef="let invoice" class="payment">
+        {{invoice.paymentMethod | invoicePaymentPipe}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <mat-header-cell *matHeaderCellDef class="buttons"></mat-header-cell>
+      <mat-cell (click)="$event.stopPropagation()" *matCellDef="let invoice" class="buttons">
+        <button (click)="editInvoice(invoice)" mat-icon-button>
+          <img src="./assets/ic_mode_edit_black_24px.svg"/>
+        </button>
+        <button (click)="removeInvoice(invoice.id)" mat-icon-button>
+          <img src="./assets/ic_clear_black_24px.svg"/>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+</div>
